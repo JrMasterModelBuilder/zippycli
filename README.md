@@ -24,7 +24,7 @@ $ npm install -g zippycli
 $ zippycli COMMAND
 running command...
 $ zippycli (-v|--version|version)
-zippycli/1.0.0 darwin-x64 node-v11.10.0
+zippycli/1.0.1 darwin-x64 node-v11.10.0
 $ zippycli --help [COMMAND]
 USAGE
   $ zippycli COMMAND
@@ -65,7 +65,7 @@ ALIASES
   $ zippycli d
 ```
 
-_See code: [src/commands/download.ts](https://github.com/JrMasterModelBuilder/zippycli/blob/v1.0.0/src/commands/download.ts)_
+_See code: [src/commands/download.ts](https://github.com/JrMasterModelBuilder/zippycli/blob/v1.0.1/src/commands/download.ts)_
 
 ## `zippycli extract SOURCE`
 
@@ -89,7 +89,7 @@ ALIASES
   $ zippycli e
 ```
 
-_See code: [src/commands/extract.ts](https://github.com/JrMasterModelBuilder/zippycli/blob/v1.0.0/src/commands/extract.ts)_
+_See code: [src/commands/extract.ts](https://github.com/JrMasterModelBuilder/zippycli/blob/v1.0.1/src/commands/extract.ts)_
 
 ## `zippycli help [COMMAND]`
 
@@ -120,7 +120,7 @@ OPTIONS
   -h, --help  show CLI help
 ```
 
-_See code: [src/commands/info.ts](https://github.com/JrMasterModelBuilder/zippycli/blob/v1.0.0/src/commands/info.ts)_
+_See code: [src/commands/info.ts](https://github.com/JrMasterModelBuilder/zippycli/blob/v1.0.1/src/commands/info.ts)_
 <!-- commandsstop -->
 
 
