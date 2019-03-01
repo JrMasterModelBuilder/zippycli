@@ -24,7 +24,7 @@ $ npm install -g zippycli
 $ zippycli COMMAND
 running command...
 $ zippycli (-v|--version|version)
-zippycli/1.0.1 darwin-x64 node-v11.10.0
+zippycli/1.0.2 darwin-x64 node-v11.10.0
 $ zippycli --help [COMMAND]
 USAGE
   $ zippycli COMMAND
@@ -57,7 +57,7 @@ OPTIONS
   -i, --input            source is input file with a URL on each line
   -m, --mtime            use server modified time if available
   -o, --output=output    output file
-  -t, --timeout=timeout  [default: 10] request timeout in seconds
+  -t, --timeout=timeout  [default: 60] request timeout in seconds
   -u, --update=update    [default: 1000] update interval in miliseconds
 
 ALIASES
@@ -65,7 +65,7 @@ ALIASES
   $ zippycli d
 ```
 
-_See code: [src/commands/download.ts](https://github.com/JrMasterModelBuilder/zippycli/blob/v1.0.1/src/commands/download.ts)_
+_See code: [src/commands/download.ts](https://github.com/JrMasterModelBuilder/zippycli/blob/v1.0.2/src/commands/download.ts)_
 
 ## `zippycli extract SOURCE`
 
@@ -82,14 +82,14 @@ OPTIONS
   -f, --format=text|json  [default: text] output format
   -h, --help              show CLI help
   -i, --input             source is input file with a URL on each line
-  -t, --timeout=timeout   [default: 10] request timeout in seconds
+  -t, --timeout=timeout   [default: 60] request timeout in seconds
 
 ALIASES
   $ zippycli ex
   $ zippycli e
 ```
 
-_See code: [src/commands/extract.ts](https://github.com/JrMasterModelBuilder/zippycli/blob/v1.0.1/src/commands/extract.ts)_
+_See code: [src/commands/extract.ts](https://github.com/JrMasterModelBuilder/zippycli/blob/v1.0.2/src/commands/extract.ts)_
 
 ## `zippycli help [COMMAND]`
 
@@ -120,7 +120,7 @@ OPTIONS
   -h, --help  show CLI help
 ```
 
-_See code: [src/commands/info.ts](https://github.com/JrMasterModelBuilder/zippycli/blob/v1.0.1/src/commands/info.ts)_
+_See code: [src/commands/info.ts](https://github.com/JrMasterModelBuilder/zippycli/blob/v1.0.2/src/commands/info.ts)_
 <!-- commandsstop -->
 
 
