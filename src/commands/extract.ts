@@ -2,6 +2,9 @@ import {flags} from '@oclif/command';
 import request from 'request';
 import {extract} from 'zs-extract';
 
+import {
+	DEFAULT_TIMEOUT
+} from '../constants';
 import {Command} from '../command';
 
 const jsonE = (v: any) => JSON.stringify(v);
@@ -46,7 +49,7 @@ export default class Extract extends Command {
 		timeout: flags.integer({
 			char: 't',
 			description: 'request timeout in seconds',
-			default: 10
+			default: DEFAULT_TIMEOUT
 		})
 	};
 

@@ -11,7 +11,11 @@ import {
 import request from 'request';
 import {extract} from 'zs-extract';
 
-import {PARTIAL_FILE_PREFIX} from '../constants';
+import {
+	PARTIAL_FILE_PREFIX,
+	DEFAULT_TIMEOUT,
+	DEFAULT_UPDATE_INTERVAL
+} from '../constants';
 import {
 	fstat,
 	parseDate,
@@ -67,12 +71,12 @@ export default class Download extends Command {
 		timeout: flags.integer({
 			char: 't',
 			description: 'request timeout in seconds',
-			default: 10
+			default: DEFAULT_TIMEOUT
 		}),
 		update: flags.integer({
 			char: 'u',
 			description: 'update interval in miliseconds',
-			default: 1000
+			default: DEFAULT_UPDATE_INTERVAL
 		})
 	};
 
