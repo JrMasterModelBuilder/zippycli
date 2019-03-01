@@ -1,0 +1,23 @@
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+
+# Node files
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.tgz
+
+# Using NPM
+yarn.lock
+
+# Build files.
+/lib
+/oclif.manifest.json

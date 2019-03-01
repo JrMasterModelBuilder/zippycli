@@ -1,0 +1,16 @@
+extends:
+- ../tslint.yaml
+
+linterOptions:
+  exclude:
+
+rulesDirectory:
+
+formattersDirectory:
+
+rules:
+  no-implicit-dependencies:
+  - true
+  - dev
+
+jsRules:
