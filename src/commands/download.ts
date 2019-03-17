@@ -266,7 +266,7 @@ export default class Download extends Command {
 
 		// Only download if partial file is not complete.
 		if (contentLengthI && resumeFrom !== contentLengthI) {
-			this.log(`dowload-start: ${dateHumanTimestamp()}`);
+			this.log(`download-start: ${dateHumanTimestamp()}`);
 
 			// Start a progress monitor.
 			const progress = new Progress(contentLengthI, resumeFrom);
@@ -292,7 +292,7 @@ export default class Download extends Command {
 				this._transferProgressOutputAfter();
 			}
 
-			this.log(`dowload-end: ${dateHumanTimestamp()}`);
+			this.log(`download-end: ${dateHumanTimestamp()}`);
 		}
 		// Otherwise just close file.
 		else {
