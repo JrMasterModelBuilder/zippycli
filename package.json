@@ -23,7 +23,8 @@
 		"build": "nps build",
 		"test": "nps test",
 		"watch": "nps watch",
-		"prepack": "nps clean lint build test"
+		"all": "nps clean lint build test",
+		"prepack": "nps clean build"
 	},
 	"repository": "https://github.com/JrMasterModelBuilder/zippycli.git",
 	"bugs": "https://github.com/JrMasterModelBuilder/zippycli/issues",
