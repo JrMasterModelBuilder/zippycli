@@ -17,14 +17,13 @@
 		"node": ">=10.0.0"
 	},
 	"scripts": {
-		"upgrade-interactive": "npm-check --update",
-		"clean": "nps clean",
-		"lint": "nps lint",
-		"build": "nps build",
-		"test": "nps test",
-		"watch": "nps watch",
-		"all": "nps clean lint build test",
-		"prepack": "nps clean build"
+		"clean": "gulp clean",
+		"lint": "gulp lint",
+		"build": "gulp build",
+		"test": "gulp test",
+		"all": "gulp all",
+		"watch": "nodemon --exec 'gulp watched'",
+		"prepack": "gulp prepack"
 	},
 	"repository": "https://github.com/JrMasterModelBuilder/zippycli.git",
 	"bugs": "https://github.com/JrMasterModelBuilder/zippycli/issues",
@@ -34,14 +33,14 @@
 	"dependencies": {
 		"@babel/runtime": "^7.5.4",
 		"@oclif/command": "^1.5.16",
-		"@oclif/config": "^1.13.1",
+		"@oclif/config": "^1.13.2",
 		"@oclif/plugin-help": "^2.2.0",
 		"@types/request": "^2.48.1",
 		"dateformat": "^3.0.3",
 		"fs-extra": "^8.1.0",
 		"request": "^2.88.0",
 		"source-map-support": "^0.5.12",
-		"zs-extract": "^1.0.5"
+		"zs-extract": "^1.0.6"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.5.4",
@@ -59,7 +58,9 @@
 		"@types/node": "^12.6.2",
 		"@types/source-map-support": "^0.5.0",
 		"chai": "^4.2.0",
+		"del": "^5.0.0",
 		"eslint": "^6.0.1",
+		"execa": "^2.0.3",
 		"gulp": "^4.0.2",
 		"gulp-babel": "^8.0.0",
 		"gulp-filter": "^6.0.0",
@@ -71,10 +72,6 @@
 		"jasmine-core": "^3.4.0",
 		"jasmine-spec-reporter": "^4.2.1",
 		"nodemon": "^1.19.1",
-		"npm-check": "^5.9.0",
-		"nps": "^5.9.5",
-		"nps-utils": "^1.7.0",
-		"rimraf": "^2.6.3",
 		"ts-node": "^8.3.0",
 		"tslint": "^5.18.0",
 		"tslint-consistent-codestyle": "^1.15.1",
