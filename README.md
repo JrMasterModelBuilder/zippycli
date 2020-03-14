@@ -58,7 +58,7 @@ OPTIONS
   -m, --mtime            use server modified time if available
   -o, --output=output    output file
   -t, --timeout=timeout  [default: 60] request timeout in seconds
-  -u, --update=update    [default: 1000] update interval in miliseconds
+  -u, --update=update    [default: 1000] update interval in milliseconds
 
 ALIASES
   $ zippycli dl
