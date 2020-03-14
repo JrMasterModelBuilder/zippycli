@@ -13,11 +13,10 @@ node_modules
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+report.*.json
 *.tgz
-
-# Using NPM
 yarn.lock
 
-# Build files.
+# Build files
 /lib
 /oclif.manifest.json

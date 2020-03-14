@@ -19,7 +19,7 @@ describe('extract', () => {
 			const list = JSON.parse(ctx.stdout);
 			expect(Array.isArray(list)).toBe(true);
 			expect(list.length).toBe(1);
-			const info = list[0];
+			const [info] = list;
 			expect(info.source).toBe(avatar.url);
 			expect(info.download).toMatch(/^https?:\/\//);
 			expect(info.filename).toBe(avatar.filename);

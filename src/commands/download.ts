@@ -1,3 +1,5 @@
+/* eslint-disable import/no-default-export */
+
 import {join as pathJoin} from 'path';
 
 import {flags} from '@oclif/command';
@@ -98,9 +100,8 @@ export default class Download extends Command {
 		// tslint:disable-next-line: no-unused
 		const {args, flags} = this.parse(Download);
 		const source = args.source as string;
-		const timeout = flags.timeout as number;
+		const {timeout, update} = flags;
 		const mtime = flags.mtime || false;
-		const update = flags.update as number;
 		const outdir = flags.dir || '';
 		const file = flags.output || '';
 		const input = flags.input || false;
@@ -123,6 +124,7 @@ export default class Download extends Command {
 			}
 
 			try {
+				// eslint-disable-next-line no-await-in-loop
 				await this._handleSource(
 					source,
 					outdir,
@@ -149,6 +151,7 @@ export default class Download extends Command {
 	 * @param source The source.
 	 * @param outdir Output dir.
 	 * @param outfile Output files.
+	 * @param mtime Modification time.
 	 * @param updateInterval Update interval.
 	 * @param req Request object.
 	 */
@@ -163,7 +166,7 @@ export default class Download extends Command {
 		this.log(`source: ${source}`);
 
 		const info = await extract(source, req);
-		const download = info.download;
+		const {download} = info;
 		const filename = outfile || info.filename;
 
 		if (!filename) {
@@ -337,7 +340,7 @@ export default class Download extends Command {
 	 * @param url Download URL.
 	 * @param req Request object.
 	 * @param resume Resume offset.
-	 * @return Stream object and a complete promise.
+	 * @returns Stream object and a complete promise.
 	 */
 	protected _download(
 		file: WriteStream,
@@ -385,7 +388,7 @@ export default class Download extends Command {
 	 * Get a partial name from filename.
 	 *
 	 * @param filename The filename.
-	 * @return Partial name.
+	 * @returns Partial name.
 	 */
 	protected _partialFilename(filename: string) {
 		return `${PARTIAL_FILE_PREFIX}${filename}`;

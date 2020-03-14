@@ -1,3 +1,5 @@
+/* eslint-disable import/no-default-export */
+
 import {flags} from '@oclif/command';
 import request from 'request';
 import {extract} from 'zs-extract';
@@ -71,8 +73,7 @@ export default class Extract extends Command {
 		// tslint:disable-next-line: no-unused
 		const {args, flags} = this.parse(Extract);
 		const source = args.source as string;
-		const format = flags.format as string;
-		const timeout = flags.timeout as number;
+		const {format, timeout} = flags;
 
 		const isJSON = format === 'json';
 		const sources = flags.input ?
@@ -97,6 +98,7 @@ export default class Extract extends Command {
 			}
 
 			try {
+				// eslint-disable-next-line no-await-in-loop
 				await this._handleSource(source, req, format);
 			}
 			catch (err) {
@@ -111,7 +113,8 @@ export default class Extract extends Command {
 			}
 
 			if (isJSON) {
-				this.log('  }' + (i + 1 === sources.length ? '' : ','));
+				const c = i + 1 === sources.length ? '' : ',';
+				this.log(`  }${c}`);
 			}
 		}
 

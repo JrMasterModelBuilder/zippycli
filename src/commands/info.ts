@@ -1,3 +1,5 @@
+/* eslint-disable import/no-default-export */
+
 import {flags} from '@oclif/command';
 import {
 	NAME as ZS_EXTRACT_NAME,
@@ -40,7 +42,7 @@ export default class Info extends Command {
 	 * Handler.
 	 */
 	public async run() {
-		// tslint:disable-next-line: no-unused
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		const {args, flags} = this.parse(Info);
 
 		this.log('Version:');

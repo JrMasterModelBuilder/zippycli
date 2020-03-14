@@ -11,7 +11,7 @@ export const pipelineP = promisify(pipeline);
  *
  * @param v Value.
  * @param d Divisor.
- * @return Integer divided and remained.
+ * @returns Integer divided and remained.
  */
 export function divmod(v: number, d: number) {
 	return [Math.floor(v / d), v % d];
@@ -21,14 +21,14 @@ export function divmod(v: number, d: number) {
  * Parse date or return null is not valid.
  *
  * @param str Date string.
- * @return Date object or null.
+ * @returns Date object or null.
  */
 export function parseDate(str: string) {
 	const d = new Date(str);
 	const t = d.getTime();
 
 	// Test if the time is NaN (NaN !== NaN).
-	// tslint:disable-next-line: ter-no-self-compare
+	// eslint-disable-next-line no-self-compare
 	return t === t ? d : null;
 }
 
@@ -36,18 +36,19 @@ export function parseDate(str: string) {
  * Get environment variable value.
  *
  * @param name Environment name.
- * @return String value or null.
+ * @returns String value or null.
  */
 export function env(name: string) {
+	// eslint-disable-next-line no-process-env
 	const v = process.env[name];
-	return v === undefined ? null : v;
+	return typeof v === 'undefined' ? null : v;
 }
 
 /**
  * Check if the environment variable value is true.
  *
  * @param name Environment name.
- * @return String value is a true-like value.
+ * @returns String value is a true-like value.
  */
 export function envTrue(name: string) {
 	const v = env(name);
@@ -58,7 +59,7 @@ export function envTrue(name: string) {
  * Stat path or return null if path does not exist.
  *
  * @param filepath File path.
- * @return Stat object or null.
+ * @returns Stat object or null.
  */
 export async function fstat(filepath: string) {
 	try {
@@ -74,7 +75,7 @@ export async function fstat(filepath: string) {
  * Read input file to list all URL's line by line.
  *
  * @param filepath Input file.
- * @return URL list.
+ * @returns URL list.
  */
 export async function readInputFile(filepath: string) {
 	const r: string[] = [];
@@ -93,7 +94,7 @@ export async function readInputFile(filepath: string) {
  * Format date for human readable timestamps.
  *
  * @param date Date object or null.
- * @return Date string.
+ * @returns Date string.
  */
 export function dateHumanTimestamp(date: Date | null = null) {
 	const d = date || new Date();

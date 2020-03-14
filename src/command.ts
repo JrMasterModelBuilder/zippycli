@@ -26,7 +26,7 @@ export abstract class Command extends CommandBase {
 	/**
 	 * Check if the shell is interactive.
 	 *
-	 * @return True if interactive shell, else false.
+	 * @returns True if interactive shell, else false.
 	 */
 	protected _isInteractive() {
 		return process.stdout.isTTY || false;
@@ -36,7 +36,7 @@ export abstract class Command extends CommandBase {
 	 * Init a request object with the specified timeout.
 	 *
 	 * @param timeout Timeout duraction in miliseconds.
-	 * @return Request object.
+	 * @returns Request object.
 	 */
 	protected _initRequest(timeout = 10000) {
 		return request.defaults({
@@ -48,7 +48,7 @@ export abstract class Command extends CommandBase {
 	 * Read input file to list all URL's line by line.
 	 *
 	 * @param filepath Input file.
-	 * @return URL list.
+	 * @returns URL list.
 	 */
 	protected async _readInputFile(filepath: string) {
 		return readInputFile(filepath);
@@ -58,7 +58,7 @@ export abstract class Command extends CommandBase {
 	 * Transfer seconds human readable.
 	 *
 	 * @param ms Miliseconds passed or null.
-	 * @return Formatted string.
+	 * @returns Formatted string.
 	 */
 	protected _transferSecondsHuman(ms: number | null) {
 		if (ms === null) {
@@ -76,7 +76,7 @@ export abstract class Command extends CommandBase {
 	 * Transfer bytes human readable.
 	 *
 	 * @param size Byte size.
-	 * @return Formatted string.
+	 * @returns Formatted string.
 	 */
 	protected _transferBytesHuman(size: number) {
 		let based = size;
@@ -93,7 +93,7 @@ export abstract class Command extends CommandBase {
 	/**
 	 * Init data transfer progress output function.
 	 *
-	 * @return Progress update callback function.
+	 * @returns Progress update callback function.
 	 */
 	protected _transferProgressOutputInit() {
 		let messageLongest = 0;
@@ -115,7 +115,7 @@ export abstract class Command extends CommandBase {
 
 			// Calculate speed.
 			const bytesMs = time.delta ? total.delta / time.delta : 0;
-			const bytesSec = this._transferBytesHuman(bytesMs * 1000) + '/s';
+			const bytesSec = `${this._transferBytesHuman(bytesMs * 1000)}/s`;
 
 			// Estimate remaining.
 			const timeLeftMs = bytesMs ? total.remaining / bytesMs : null;

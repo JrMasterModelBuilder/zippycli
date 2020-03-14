@@ -1,16 +1,20 @@
 export interface IProgressTime {
+
 	/**
 	 * Start time.
 	 */
 	start: number;
+
 	/**
 	 * Current time.
 	 */
 	now: number;
+
 	/**
 	 * Current duration.
 	 */
 	duration: number;
+
 	/**
 	 * Delta since last update.
 	 */
@@ -18,18 +22,22 @@ export interface IProgressTime {
 }
 
 export interface IProgressTotal {
+
 	/**
 	 * Total amount.
 	 */
 	total: number;
+
 	/**
 	 * Current amount.
 	 */
 	current: number;
+
 	/**
 	 * Remaining amount.
 	 */
 	remaining: number;
+
 	/**
 	 * Delta since last update.
 	 */
@@ -93,6 +101,8 @@ export class Progress extends Object {
 
 	/**
 	 * Get the current time.
+	 *
+	 * @returns Current time.
 	 */
 	public now() {
 		return Date.now();
