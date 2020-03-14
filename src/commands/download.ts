@@ -77,7 +77,7 @@ export default class Download extends Command {
 		}),
 		update: flags.integer({
 			char: 'u',
-			description: 'update interval in miliseconds',
+			description: 'update interval in milliseconds',
 			default: DEFAULT_UPDATE_INTERVAL
 		})
 	};

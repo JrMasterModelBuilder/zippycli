@@ -35,7 +35,7 @@ export abstract class Command extends CommandBase {
 	/**
 	 * Init a request object with the specified timeout.
 	 *
-	 * @param timeout Timeout duraction in miliseconds.
+	 * @param timeout Timeout duraction in milliseconds.
 	 * @returns Request object.
 	 */
 	protected _initRequest(timeout = 10000) {
@@ -57,7 +57,7 @@ export abstract class Command extends CommandBase {
 	/**
 	 * Transfer seconds human readable.
 	 *
-	 * @param ms Miliseconds passed or null.
+	 * @param ms Milliseconds passed or null.
 	 * @returns Formatted string.
 	 */
 	protected _transferSecondsHuman(ms: number | null) {

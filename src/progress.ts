@@ -120,7 +120,7 @@ export class Progress extends Object {
 	/**
 	 * Start updater.
 	 *
-	 * @param interval Update interval in miliseconds.
+	 * @param interval Update interval in milliseconds.
 	 * @param cb Progress callback.
 	 */
 	public start(
