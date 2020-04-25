@@ -24,7 +24,7 @@ $ npm install -g zippycli
 $ zippycli COMMAND
 running command...
 $ zippycli (-v|--version|version)
-zippycli/1.0.7 darwin-x64 node-v13.11.0
+zippycli/1.0.7 darwin-x64 node-v14.0.0
 $ zippycli --help [COMMAND]
 USAGE
   $ zippycli COMMAND
