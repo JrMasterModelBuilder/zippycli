@@ -24,7 +24,7 @@ $ npm install -g zippycli
 $ zippycli COMMAND
 running command...
 $ zippycli (-v|--version|version)
-zippycli/1.0.8 darwin-x64 node-v14.0.0
+zippycli/1.0.8 darwin-x64 node-v14.6.0
 $ zippycli --help [COMMAND]
 USAGE
   $ zippycli COMMAND
@@ -106,7 +106,7 @@ OPTIONS
   --all  see all commands in CLI
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.3/src/commands/help.ts)_
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.1.0/src/commands/help.ts)_
 
 ## `zippycli info`
 

@@ -1,11 +1,14 @@
 language: node_js
 
-node_js:
-- v10.0.0
-- v14.0.0
+matrix:
+  include:
+  - node_js: v10.0.0
+    env:
+    - NO_LINT=1
+  - node_js: v14.6.0
 
 script:
 - npm run clean
-- npm run lint
+- if [ "$NO_LINT" != "1" ]; then npm run lint; fi
 - npm run build
 - travis_retry npm run test

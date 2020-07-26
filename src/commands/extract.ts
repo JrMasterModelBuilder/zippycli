@@ -26,17 +26,17 @@ export default class Extract extends Command {
 	/**
 	 * Description.
 	 */
-	public static description = 'extract data about download';
+	public static readonly description = 'extract data about download';
 
 	/**
 	 * Examples.
 	 */
-	public static examples = [];
+	public static readonly examples = [];
 
 	/**
 	 * Flags.
 	 */
-	public static flags = {
+	public static readonly flags = {
 		help: flags.help({char: 'h'}),
 		format: flags.string({
 			char: 'f',
@@ -58,7 +58,7 @@ export default class Extract extends Command {
 	/**
 	 * Arguments.
 	 */
-	public static args = [
+	public static readonly args = [
 		{
 			name: 'source',
 			required: true,
@@ -70,7 +70,6 @@ export default class Extract extends Command {
 	 * Handler.
 	 */
 	public async run() {
-		// tslint:disable-next-line: no-unused
 		const {args, flags} = this.parse(Extract);
 		const source = args.source as string;
 		const {format, timeout} = flags;
@@ -148,7 +147,7 @@ export default class Extract extends Command {
 			this.log(`source: ${source}`);
 		}
 
-		const {download, filename} = await extract(source, req);
+		const {download, filename} = await extract(source, req as any);
 
 		if (isJSON) {
 			this.log(`    "download": ${jsonE(download)},`);

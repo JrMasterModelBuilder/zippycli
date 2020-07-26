@@ -19,31 +19,30 @@ export default class Info extends Command {
 	/**
 	 * Description.
 	 */
-	public static description = 'display info about program';
+	public static readonly description = 'display info about program';
 
 	/**
 	 * Examples.
 	 */
-	public static examples = [];
+	public static readonly examples = [];
 
 	/**
 	 * Flags.
 	 */
-	public static flags = {
+	public static readonly flags = {
 		help: flags.help({char: 'h'})
 	};
 
 	/**
 	 * Arguments.
 	 */
-	public static args = [];
+	public static readonly args = [];
 
 	/**
 	 * Handler.
 	 */
 	public async run() {
-		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		const {args, flags} = this.parse(Info);
+		this.parse(Info);
 
 		this.log('Version:');
 		this.log(`  ${NAME}: ${VERSION}`);

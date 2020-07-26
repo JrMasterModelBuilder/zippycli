@@ -15,6 +15,8 @@ import {ProgressCallback} from './progress';
 export abstract class Command extends CommandBase {
 	/**
 	 * Init function.
+	 *
+	 * @returns Returns the parent init.
 	 */
 	public async init() {
 		if (envTrue('ZS_CLI_DEBUG_SOURCE_MAPS')) {

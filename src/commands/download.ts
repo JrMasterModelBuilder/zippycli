@@ -42,17 +42,17 @@ export default class Download extends Command {
 	/**
 	 * Description.
 	 */
-	public static description = 'download file from source';
+	public static readonly description = 'download file from source';
 
 	/**
 	 * Examples.
 	 */
-	public static examples = [];
+	public static readonly examples = [];
 
 	/**
 	 * Flags.
 	 */
-	public static flags = {
+	public static readonly flags = {
 		help: flags.help({char: 'h'}),
 		output: flags.string({
 			char: 'o',
@@ -85,7 +85,7 @@ export default class Download extends Command {
 	/**
 	 * Arguments.
 	 */
-	public static args = [
+	public static readonly args = [
 		{
 			name: 'source',
 			required: true,
@@ -97,7 +97,6 @@ export default class Download extends Command {
 	 * Handler.
 	 */
 	public async run() {
-		// tslint:disable-next-line: no-unused
 		const {args, flags} = this.parse(Download);
 		const source = args.source as string;
 		const {timeout, update} = flags;
@@ -165,7 +164,7 @@ export default class Download extends Command {
 	) {
 		this.log(`source: ${source}`);
 
-		const info = await extract(source, req);
+		const info = await extract(source, req as any);
 		const {download} = info;
 		const filename = outfile || info.filename;
 
