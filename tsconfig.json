@@ -30,10 +30,7 @@
 
 		"types": [
 			"node",
-			"jasmine",
-			"request",
-			"source-map-support",
-			"fs-extra"
+			"jasmine"
 		],
 		"outDir": "lib",
 		"rootDirs": [
