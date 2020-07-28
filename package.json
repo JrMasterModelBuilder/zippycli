@@ -9,7 +9,19 @@
 		"cli"
 	],
 	"main": "lib/index",
+	"exports": {
+		"./module.mjs": "./module.mjs",
+		".": [
+			{
+				"import": "./lib/index.mjs",
+				"require": "./lib/index.js",
+				"default": "./lib/index.js"
+			},
+			"./lib/index.js"
+		]
+	},
 	"types": "lib/index.d.ts",
+	"module": "module.mjs",
 	"bin": {
 		"zippycli": "./bin/run"
 	},
