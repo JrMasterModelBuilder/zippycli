@@ -1,6 +1,5 @@
 import {Command as CommandBase} from '@oclif/command';
 import {install as sourceMapSupportInstall} from 'source-map-support';
-import request from 'request';
 
 import {
 	divmod,
@@ -8,6 +7,10 @@ import {
 	readInputFile
 } from './util';
 import {ProgressCallback} from './progress';
+import {
+	IRequestFactory,
+	RequestStream
+} from './request';
 
 /**
  * Command constructor.
@@ -35,13 +38,13 @@ export abstract class Command extends CommandBase {
 	}
 
 	/**
-	 * Init a request object with the specified timeout.
+	 * Init a request factory with the specified timeout.
 	 *
 	 * @param timeout Timeout duraction in milliseconds.
-	 * @returns Request object.
+	 * @returns Request factory.
 	 */
-	protected _initRequest(timeout = 10000) {
-		return request.defaults({
+	protected _initRequest(timeout = 10000): IRequestFactory {
+		return RequestStream.factory({
 			timeout
 		});
 	}
@@ -107,7 +110,7 @@ export abstract class Command extends CommandBase {
 			const progress = total.current / total.total;
 			const percent = `${(progress * 100).toFixed(2)}%`;
 
-			// Calcaulte amounts.
+			// Calculate amounts.
 			const amountCurrent = this._transferBytesHuman(total.current);
 			const amountTotal = this._transferBytesHuman(total.total);
 			const amount = [

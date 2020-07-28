@@ -10,7 +10,6 @@ import {
 	ensureFile,
 	move
 } from 'fs-extra';
-import request from 'request';
 import {extract} from 'zs-extract';
 
 import {
@@ -26,6 +25,7 @@ import {
 } from '../util';
 import {Progress} from '../progress';
 import {Command} from '../command';
+import {IRequestFactory, IRequestResponse} from '../request';
 
 /**
  * Download command.
@@ -152,7 +152,7 @@ export default class Download extends Command {
 	 * @param outfile Output files.
 	 * @param mtime Modification time.
 	 * @param updateInterval Update interval.
-	 * @param req Request object.
+	 * @param req Request factory.
 	 */
 	protected async _handleSource(
 		source: string,
@@ -160,11 +160,11 @@ export default class Download extends Command {
 		outfile: string,
 		mtime: boolean,
 		updateInterval: number,
-		req: typeof request
+		req: IRequestFactory
 	) {
 		this.log(`source: ${source}`);
 
-		const info = await extract(source, req as any);
+		const info = await extract(source, req);
 		const {download} = info;
 		const filename = outfile || info.filename;
 
@@ -189,7 +189,7 @@ export default class Download extends Command {
 		}
 
 		// Make a HEAD request to the download URL, to get file headers.
-		const headResponse = await new Promise<request.Response>(
+		const headResponse = await new Promise<IRequestResponse>(
 			(resolve, reject) => {
 				req({
 					url: download,
@@ -337,17 +337,17 @@ export default class Download extends Command {
 	 *
 	 * @param file File stream.
 	 * @param url Download URL.
-	 * @param req Request object.
+	 * @param req Request factory.
 	 * @param resume Resume offset.
 	 * @returns Stream object and a complete promise.
 	 */
 	protected _download(
 		file: WriteStream,
 		url: string,
-		req: typeof request,
+		req: IRequestFactory,
 		resume: number
 	) {
-		const headers: request.Headers = {};
+		const headers: {[key: string]: string} = {};
 		if (resume) {
 			headers.Range = `bytes=${resume}-`;
 		}

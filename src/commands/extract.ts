@@ -1,13 +1,13 @@
 /* eslint-disable import/no-default-export */
 
 import {flags} from '@oclif/command';
-import request from 'request';
 import {extract} from 'zs-extract';
 
 import {
 	DEFAULT_TIMEOUT
 } from '../constants';
 import {Command} from '../command';
+import {IRequestFactory} from '../request';
 
 const jsonE = (v: any) => JSON.stringify(v);
 
@@ -130,12 +130,12 @@ export default class Extract extends Command {
 	 * Handle an individual source.
 	 *
 	 * @param source The source.
-	 * @param req Request object.
+	 * @param req Request factory.
 	 * @param format Output format.
 	 */
 	protected async _handleSource(
 		source: string,
-		req: typeof request,
+		req: IRequestFactory,
 		format: string
 	) {
 		const isJSON = format === 'json';
@@ -147,7 +147,7 @@ export default class Extract extends Command {
 			this.log(`source: ${source}`);
 		}
 
-		const {download, filename} = await extract(source, req as any);
+		const {download, filename} = await extract(source, req);
 
 		if (isJSON) {
 			this.log(`    "download": ${jsonE(download)},`);
