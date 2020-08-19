@@ -24,13 +24,11 @@ async function exec(cmd, args = []) {
 }
 
 async function packageJSON() {
-	packageJSON.json = packageJSON.json || readFile('package.json', 'utf8');
-	return JSON.parse(await packageJSON.json);
+	return JSON.parse(await readFile('package.json', 'utf8'));
 }
 
 async function babelrc() {
-	babelrc.json = babelrc.json || readFile('.babelrc', 'utf8');
-	return Object.assign(JSON.parse(await babelrc.json), {
+	return Object.assign(JSON.parse(await readFile('.babelrc', 'utf8')), {
 		babelrc: false
 	});
 }
