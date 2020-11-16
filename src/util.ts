@@ -2,7 +2,6 @@ import {pipeline} from 'stream';
 import {promisify} from 'util';
 
 import {readFile, stat} from 'fs-extra';
-import dateformat from 'dateformat';
 
 export const pipelineP = promisify(pipeline);
 
@@ -98,5 +97,18 @@ export async function readInputFile(filepath: string) {
  */
 export function dateHumanTimestamp(date: Date | null = null) {
 	const d = date || new Date();
-	return dateformat(d, 'yyyy-mm-dd h:MM:ss');
+
+	// Format: yyyy-mm-dd h:MM:ss
+	return [
+		[
+			d.getFullYear(),
+			`0${1 + d.getMonth()}`.slice(-2),
+			`0${d.getDate()}`.slice(-2)
+		].join('-'),
+		[
+			d.getHours(),
+			`0${d.getMinutes()}`.slice(-2),
+			`0${d.getSeconds()}`.slice(-2)
+		].join(':')
+	].join(' ');
 }
