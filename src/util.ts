@@ -65,9 +65,12 @@ export async function fstat(filepath: string) {
 		return await stat(filepath);
 	}
 	catch (err) {
-		// Ignore it.
+		const {code} = err;
+		if (code === 'ENOENT' || code === 'ENOTDIR') {
+			return null;
+		}
+		throw err;
 	}
-	return null;
 }
 
 /**
@@ -102,7 +105,7 @@ export function dateHumanTimestamp(date: Date | null = null) {
 	return [
 		[
 			d.getFullYear(),
-			`0${1 + d.getMonth()}`.slice(-2),
+			`0${d.getMonth() + 1}`.slice(-2),
 			`0${d.getDate()}`.slice(-2)
 		].join('-'),
 		[
