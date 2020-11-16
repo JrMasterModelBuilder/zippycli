@@ -9,7 +9,7 @@ An unofficial Zippyshare CLI
 [![size](https://packagephobia.now.sh/badge?p=zippycli)](https://packagephobia.now.sh/result?p=zippycli)
 [![downloads](https://img.shields.io/npm/dm/zippycli.svg)](https://npmcharts.com/compare/zippycli?minimal=true)
 
-[![travis-ci](https://travis-ci.com/JrMasterModelBuilder/zippycli.svg?branch=master)](https://travis-ci.com/JrMasterModelBuilder/zippycli)
+[![Build Status](https://github.com/JrMasterModelBuilder/zippycli/workflows/main/badge.svg?branch=master)](https://github.com/JrMasterModelBuilder/zippycli/actions?query=workflow%3Amain+branch%3Amaster)
 
 
 # Overview
