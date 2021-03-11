@@ -40,7 +40,7 @@
 	"repository": "https://github.com/JrMasterModelBuilder/zippycli.git",
 	"bugs": "https://github.com/JrMasterModelBuilder/zippycli/issues",
 	"author": "JrMasterModelBuilder",
-	"copyright": "Copyright (c) 2019-2020 JrMasterModelBuilder",
+	"copyright": "Copyright (c) 2019-2021 JrMasterModelBuilder",
 	"license": "MPL-2.0",
 	"dependencies": {
 		"@oclif/command": "^1.8.0",
@@ -102,6 +102,6 @@
 		"plugins": [
 			"@oclif/plugin-help"
 		],
-		"description": "zippycli - An unofficial Zippyshare CLI\nCopyright (c) 2019-2020 JrMasterModelBuilder\nLicensed under the Mozilla Public License, v. 2.0"
+		"description": "zippycli - An unofficial Zippyshare CLI\nCopyright (c) 2019-2021 JrMasterModelBuilder\nLicensed under the Mozilla Public License, v. 2.0"
 	}
 }
