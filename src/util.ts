@@ -1,7 +1,7 @@
 import {pipeline} from 'stream';
 import {promisify} from 'util';
 
-import {readFile, stat} from 'fs-extra';
+import fse from 'fs-extra';
 
 export const pipelineP = promisify(pipeline);
 
@@ -62,7 +62,7 @@ export function envTrue(name: string) {
  */
 export async function fstat(filepath: string) {
 	try {
-		return await stat(filepath);
+		return await fse.stat(filepath);
 	}
 	catch (err) {
 		const {code} = err;
@@ -81,7 +81,7 @@ export async function fstat(filepath: string) {
  */
 export async function readInputFile(filepath: string) {
 	const r: string[] = [];
-	const data = await readFile(filepath, 'utf8');
+	const data = await fse.readFile(filepath, 'utf8');
 	const lines = data.split(/[\r\n]+/);
 	for (const line of lines) {
 		const s = line.trim();

@@ -3,13 +3,7 @@
 import {join as pathJoin} from 'path';
 
 import {flags} from '@oclif/command';
-import {
-	createWriteStream,
-	WriteStream,
-	utimes,
-	ensureFile,
-	move
-} from 'fs-extra';
+import fse from 'fs-extra';
 import {extract} from 'zs-extract';
 
 import {
@@ -261,8 +255,8 @@ export default class Download extends Command {
 		}
 
 		// Open the file for append if resuming, else write.
-		await ensureFile(partFilepath);
-		const file = createWriteStream(partFilepath, {
+		await fse.ensureFile(partFilepath);
+		const file = fse.createWriteStream(partFilepath, {
 			flags: resumeFrom ? 'a' : 'w'
 		});
 
@@ -321,12 +315,12 @@ export default class Download extends Command {
 		if (dateModified && mtime) {
 			const time = dateModified.getTime() / 1000;
 			this.log(`setting-mtime: ${time}`);
-			await utimes(partFilepath, time, time);
+			await fse.utimes(partFilepath, time, time);
 		}
 
 		// Move partial.
 		this.log(`saving-partial: ${partFilename}`);
-		await move(partFilepath, filepath);
+		await fse.move(partFilepath, filepath);
 
 		// All done.
 		this.log(`done: ${filename}`);
@@ -342,7 +336,7 @@ export default class Download extends Command {
 	 * @returns Stream object and a complete promise.
 	 */
 	protected _download(
-		file: WriteStream,
+		file: fse.WriteStream,
 		url: string,
 		req: IRequestFactory,
 		resume: number
