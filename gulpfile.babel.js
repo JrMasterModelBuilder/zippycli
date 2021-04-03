@@ -51,9 +51,6 @@ async function babelTarget(src, srcOpts, dest, modules) {
 							'.mjs'
 						]
 					]
-				},
-				submodule: {
-					extensions: ['.mjs', '.js']
 				}
 			}
 		]);
