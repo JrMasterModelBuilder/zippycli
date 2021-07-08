@@ -11,7 +11,7 @@ jobs:
             NO_LINT: 1
           - node-version: '12.22.1' # LTS
             NO_LINT: 1
-          - node-version: '14.16.1' # LTS
+          - node-version: '14.17.3' # LTS
             NO_LINT: 1
           - node-version: '16.1.0'
 
