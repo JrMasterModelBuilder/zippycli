@@ -1,7 +1,7 @@
 {
 	"compileOnSave": false,
 	"compilerOptions": {
-		"target": "ESNext",
+		"target": "ES6",
 		"module": "commonjs",
 		"moduleResolution": "Node",
 		"esModuleInterop": true,
