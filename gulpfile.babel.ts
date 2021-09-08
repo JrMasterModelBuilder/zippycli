@@ -136,6 +136,16 @@ gulp.task('lint:es', async () => {
 
 gulp.task('lint', gulp.parallel(['lint:es']));
 
+// formatting
+
+gulp.task('format', async () => {
+	await exec('prettier', ['-w', '.']);
+});
+
+gulp.task('formatted', async () => {
+	await exec('prettier', ['-c', '.']);
+});
+
 // build
 
 gulp.task('build:lib:dts', async () => {
@@ -184,7 +194,7 @@ gulp.task('watch', () => {
 
 // all
 
-gulp.task('all', gulp.series(['clean', 'build', 'test', 'lint']));
+gulp.task('all', gulp.series(['clean', 'build', 'test', 'lint', 'formatted']));
 
 // prepack
 

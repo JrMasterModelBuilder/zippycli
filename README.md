@@ -11,13 +11,12 @@ An unofficial Zippyshare CLI
 
 [![Build Status](https://github.com/JrMasterModelBuilder/zippycli/workflows/main/badge.svg?branch=master)](https://github.com/JrMasterModelBuilder/zippycli/actions?query=workflow%3Amain+branch%3Amaster)
 
-
 # Overview
 
 Currently supports downloading files and extracting download info from download pages.
 
-
 # Usage
+
 <!-- usage -->
 ```sh-session
 $ npm install -g zippycli
@@ -32,8 +31,8 @@ USAGE
 ```
 <!-- usagestop -->
 
-
 # Commands
+
 <!-- commands -->
 * [`zippycli download SOURCE`](#zippycli-download-source)
 * [`zippycli extract SOURCE`](#zippycli-extract-source)
@@ -123,11 +122,9 @@ OPTIONS
 _See code: [src/commands/info.ts](https://github.com/JrMasterModelBuilder/zippycli/blob/v1.3.3/src/commands/info.ts)_
 <!-- commandsstop -->
 
-
 # Bugs
 
 If you find a bug or have compatibility issues, please open a ticket under issues section for this repository.
-
 
 # License
 

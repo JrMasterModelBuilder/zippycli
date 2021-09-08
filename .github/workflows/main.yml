@@ -18,15 +18,15 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.config.node-version }}
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.config.node-version }}
 
-    - run: npm install
-    - run: npm run clean
-    - run: npm run lint
-      if: matrix.config.NO_LINT != 1
-    - run: npm run build
-    - run: npm run test
+      - run: npm install
+      - run: npm run clean
+      - run: npm run lint
+        if: matrix.config.NO_LINT != 1
+      - run: npm run build
+      - run: npm run test
