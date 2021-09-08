@@ -6,16 +6,13 @@ import {
 	VERSION as ZS_EXTRACT_VERSION
 } from 'zs-extract';
 
-import {
-	NAME,
-	VERSION
-} from '../meta';
+import {NAME, VERSION} from '../meta';
 import {Command} from '../command';
 
 /**
  * Info command.
  */
-export default class Info extends Command {
+export class Info extends Command {
 	/**
 	 * Description.
 	 */
@@ -41,6 +38,7 @@ export default class Info extends Command {
 	/**
 	 * Handler.
 	 */
+	// eslint-disable-next-line @typescript-eslint/require-await
 	public async run() {
 		this.parse(Info);
 
@@ -50,12 +48,11 @@ export default class Info extends Command {
 		this.log('');
 
 		this.log('Library versions:');
-		for (const info of [
-			[ZS_EXTRACT_NAME, ZS_EXTRACT_VERSION]
-		]) {
+		for (const info of [[ZS_EXTRACT_NAME, ZS_EXTRACT_VERSION]]) {
 			this.log(`  ${info[0]}: ${info[1]}`);
 		}
 
 		this.log('');
 	}
 }
+export default Info;

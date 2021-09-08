@@ -3,25 +3,26 @@
 import {flags} from '@oclif/command';
 import {extract} from 'zs-extract';
 
-import {
-	DEFAULT_TIMEOUT
-} from '../constants';
+import {DEFAULT_TIMEOUT} from '../constants';
 import {Command} from '../command';
 import {IRequestFactory} from '../request';
 
+/**
+ * JSON encode a variable.
+ *
+ * @param v Any value.
+ * @returns JSON string.
+ */
 const jsonE = (v: any) => JSON.stringify(v);
 
 /**
  * Extract command.
  */
-export default class Extract extends Command {
+export class Extract extends Command {
 	/**
 	 * Aliases.
 	 */
-	public static readonly aliases = [
-		'ex',
-		'e'
-	];
+	public static readonly aliases = ['ex', 'e'];
 
 	/**
 	 * Description.
@@ -75,9 +76,9 @@ export default class Extract extends Command {
 		const {format, timeout} = flags;
 
 		const isJSON = format === 'json';
-		const sources = flags.input ?
-			await this._readInputFile(source) :
-			[source];
+		const sources = flags.input
+			? await this._readInputFile(source)
+			: [source];
 
 		const req = this._initRequest(timeout * 1000);
 
@@ -91,22 +92,19 @@ export default class Extract extends Command {
 			const source = sources[i];
 			if (isJSON) {
 				this.log('  {');
-			}
-			else if (i) {
+			} else if (i) {
 				this.log('');
 			}
 
 			try {
 				// eslint-disable-next-line no-await-in-loop
 				await this._handleSource(source, req, format);
-			}
-			catch (err) {
+			} catch (err) {
 				errors = true;
 				const error = String(err);
 				if (isJSON) {
 					this.log(`    "error": ${jsonE(error)}`);
-				}
-				else {
+				} else {
 					this.log(`error: ${error}`);
 				}
 			}
@@ -142,8 +140,7 @@ export default class Extract extends Command {
 
 		if (isJSON) {
 			this.log(`    "source": ${jsonE(source)},`);
-		}
-		else {
+		} else {
 			this.log(`source: ${source}`);
 		}
 
@@ -152,10 +149,10 @@ export default class Extract extends Command {
 		if (isJSON) {
 			this.log(`    "download": ${jsonE(download)},`);
 			this.log(`    "filename": ${jsonE(filename)}`);
-		}
-		else {
+		} else {
 			this.log(`download: ${download}`);
 			this.log(`filename: ${filename || ''}`);
 		}
 	}
 }
+export default Extract;

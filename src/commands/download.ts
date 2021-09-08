@@ -11,12 +11,7 @@ import {
 	DEFAULT_TIMEOUT,
 	DEFAULT_UPDATE_INTERVAL
 } from '../constants';
-import {
-	fstat,
-	parseDate,
-	pipelineP,
-	dateHumanTimestamp
-} from '../util';
+import {fstat, parseDate, pipelineP, dateHumanTimestamp} from '../util';
 import {Progress} from '../progress';
 import {Command} from '../command';
 import {IRequestFactory, IRequestResponse} from '../request';
@@ -24,14 +19,11 @@ import {IRequestFactory, IRequestResponse} from '../request';
 /**
  * Download command.
  */
-export default class Download extends Command {
+export class Download extends Command {
 	/**
 	 * Aliases.
 	 */
-	public static readonly aliases = [
-		'dl',
-		'd'
-	];
+	public static readonly aliases = ['dl', 'd'];
 
 	/**
 	 * Description.
@@ -102,9 +94,9 @@ export default class Download extends Command {
 			throw new Error('Both file and input arguments found');
 		}
 
-		const sources = flags.input ?
-			await this._readInputFile(source) :
-			[source];
+		const sources = flags.input
+			? await this._readInputFile(source)
+			: [source];
 
 		const req = this._initRequest(timeout * 1000);
 
@@ -126,10 +118,9 @@ export default class Download extends Command {
 					update,
 					req
 				);
-			}
-			catch (err) {
+			} catch (err) {
 				errors = true;
-				this.log(`error: ${err}`);
+				this.log(`error: ${(err as Error).toString()}`);
 			}
 		}
 
@@ -185,16 +176,19 @@ export default class Download extends Command {
 		// Make a HEAD request to the download URL, to get file headers.
 		const headResponse = await new Promise<IRequestResponse>(
 			(resolve, reject) => {
-				req({
-					url: download,
-					method: 'HEAD'
-				}, (err, response) => {
-					if (err) {
-						reject(err);
-						return;
+				req(
+					{
+						url: download,
+						method: 'HEAD'
+					},
+					(err, response) => {
+						if (err) {
+							reject(err);
+							return;
+						}
+						resolve(response);
 					}
-					resolve(response);
-				});
+				);
 			}
 		);
 
@@ -235,8 +229,9 @@ export default class Download extends Command {
 
 		// Create part file name.
 		const partFilename = this._partialFilename(filename);
-		const partFilepath = outdir ?
-			pathJoin(outdir, partFilename) : partFilename;
+		const partFilepath = outdir
+			? pathJoin(outdir, partFilename)
+			: partFilename;
 		this.log(`filename-partial: ${partFilename}`);
 
 		// Stat the part file if exists, throw if not file.
@@ -269,12 +264,7 @@ export default class Download extends Command {
 			progress.start(updateInterval, this._transferProgressOutputInit());
 
 			// Start download, monitoring progress.
-			const dl = this._download(
-				file,
-				download,
-				req,
-				resumeFrom
-			);
+			const dl = this._download(file, download, req, resumeFrom);
 			dl.stream.on('data', data => {
 				progress.add(data.length);
 			});
@@ -282,8 +272,7 @@ export default class Download extends Command {
 			// Await completion.
 			try {
 				await dl.complete;
-			}
-			finally {
+			} finally {
 				progress.end();
 				this._transferProgressOutputAfter();
 			}
@@ -353,7 +342,7 @@ export default class Download extends Command {
 			url,
 			headers
 		});
-		stream.once('response', response => {
+		stream.once('response', (response: IRequestResponse) => {
 			const {statusCode} = response;
 			if (statusCode === statusCodeExpected) {
 				return;
@@ -387,3 +376,4 @@ export default class Download extends Command {
 		return `${PARTIAL_FILE_PREFIX}${filename}`;
 	}
 }
+export default Download;

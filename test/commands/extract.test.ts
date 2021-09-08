@@ -3,8 +3,7 @@ import {test} from '@oclif/test';
 import {avatar} from '../data';
 
 describe('extract', () => {
-	test
-		.stdout()
+	test.stdout()
 		.command(['extract', avatar.url])
 		.it('format: text (default)', ctx => {
 			expect(ctx.stdout).toContain(`source: ${avatar.url}`);
@@ -12,11 +11,16 @@ describe('extract', () => {
 			expect(ctx.stdout).toContain(`filename: ${avatar.filename}`);
 		});
 
-	test
-		.stdout()
+	test.stdout()
 		.command(['extract', '-f', 'json', avatar.url])
 		.it('format: json', ctx => {
-			const list = JSON.parse(ctx.stdout);
+			const list = JSON.parse(ctx.stdout) as [
+				{
+					source: string;
+					download: string;
+					filename: string;
+				}
+			];
 			expect(Array.isArray(list)).toBe(true);
 			expect(list.length).toBe(1);
 			const [info] = list;

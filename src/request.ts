@@ -1,10 +1,10 @@
 import {Readable} from 'stream';
 
 import fetch from 'node-fetch';
-import AbortController from 'abort-controller';
+import {AbortController} from 'abort-controller';
 
 export interface IRequestDefaults {
-
+	//
 	/**
 	 * Request method.
 	 */
@@ -32,7 +32,7 @@ export interface IRequestDefaults {
 }
 
 export interface IRequestOptions extends IRequestDefaults {
-
+	//
 	/**
 	 * URL string.
 	 */
@@ -40,7 +40,7 @@ export interface IRequestOptions extends IRequestDefaults {
 }
 
 export interface IRequestResponse {
-
+	//
 	/**
 	 * Status code.
 	 */
@@ -75,8 +75,6 @@ export type IRequestFactory = (
 
 /**
  * RequestStream, similar to the deprecated request module stream.
- *
- * @param options Request options.
  */
 export class RequestStream extends Readable {
 	/**
@@ -89,6 +87,11 @@ export class RequestStream extends Readable {
 	 */
 	private _abortController_: AbortController | null = null;
 
+	/**
+	 * Create RequestStream.
+	 *
+	 * @param options Request options.
+	 */
 	constructor(options: Readonly<IRequestOptions>) {
 		super();
 
@@ -187,10 +190,7 @@ export class RequestStream extends Readable {
 		defaults: Readonly<IRequestDefaults> = {}
 	): IRequestFactory {
 		const Constructor = this as any as typeof RequestStream;
-		return (
-			options: Readonly<IRequestOptions>,
-			cb?: IRequestCallback
-		) => {
+		return (options: Readonly<IRequestOptions>, cb?: IRequestCallback) => {
 			const opts = {defaults, ...options};
 			const request = new Constructor(opts);
 			if (cb) {
@@ -199,7 +199,7 @@ export class RequestStream extends Readable {
 					headers: {}
 				};
 				const datas: Buffer[] = [];
-				request.on('response', resp => {
+				request.on('response', (resp: IRequestResponse) => {
 					response = resp;
 				});
 				request.on('data', data => {
@@ -215,9 +215,9 @@ export class RequestStream extends Readable {
 					cb(
 						null,
 						resp,
-						encoding === null ?
-							data :
-							data.toString(encoding as any)
+						encoding === null
+							? data
+							: data.toString(encoding as any)
 					);
 				});
 			}

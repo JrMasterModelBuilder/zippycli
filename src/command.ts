@@ -1,16 +1,9 @@
 import {Command as CommandBase} from '@oclif/command';
 import {install as sourceMapSupportInstall} from 'source-map-support';
 
-import {
-	divmod,
-	envTrue,
-	readInputFile
-} from './util';
+import {divmod, envTrue, readInputFile} from './util';
 import {ProgressCallback} from './progress';
-import {
-	IRequestFactory,
-	RequestStream
-} from './request';
+import {IRequestFactory, RequestStream} from './request';
 
 /**
  * Command constructor.
@@ -102,6 +95,13 @@ export abstract class Command extends CommandBase {
 	 */
 	protected _transferProgressOutputInit() {
 		let messageLongest = 0;
+
+		/**
+		 * Progress callback.
+		 *
+		 * @param time Time.
+		 * @param total Total.
+		 */
 		const r: ProgressCallback = (time, total) => {
 			// Calcaulte the time spent.
 			const timePast = this._transferSecondsHuman(time.duration);
@@ -127,13 +127,9 @@ export abstract class Command extends CommandBase {
 			const timeETA = this._transferSecondsHuman(timeLeftMs);
 
 			// Assemble message.
-			const message = [
-				timePast,
-				percent,
-				amount,
-				bytesSec,
-				timeETA
-			].join('  ');
+			const message = [timePast, percent, amount, bytesSec, timeETA].join(
+				'  '
+			);
 
 			// Remember the longest message.
 			messageLongest = Math.max(messageLongest, message.length);
@@ -141,8 +137,7 @@ export abstract class Command extends CommandBase {
 
 			if (this._isInteractive()) {
 				process.stdout.write(`\r${messagePadded}\r`);
-			}
-			else {
+			} else {
 				this.log(messagePadded);
 			}
 		};

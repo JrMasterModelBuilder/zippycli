@@ -63,9 +63,8 @@ export function envTrue(name: string) {
 export async function fstat(filepath: string) {
 	try {
 		return await fse.stat(filepath);
-	}
-	catch (err) {
-		const {code} = err;
+	} catch (err) {
+		const code = err ? (err as {code: string}).code : null;
 		if (code === 'ENOENT' || code === 'ENOTDIR') {
 			return null;
 		}

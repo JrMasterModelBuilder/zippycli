@@ -23,14 +23,21 @@ async function exec(cmd: string, args: string[] = []) {
 	});
 }
 
-async function packageJSON() {
-	return JSON.parse(await readFile('package.json', 'utf8'));
+async function packageJson() {
+	return JSON.parse(await readFile('package.json', 'utf8')) as {
+		[p: string]: string;
+	};
 }
 
 async function babelrc() {
 	return {
 		...JSON.parse(await readFile('.babelrc', 'utf8')),
 		babelrc: false
+	} as {
+		presets: [string, {modules: boolean | string}][];
+		babelOpts: unknown[];
+		cacheDirectory?: boolean;
+		plugins: [string, unknown];
 	};
 }
 
@@ -49,7 +56,8 @@ async function babelTarget(
 	}
 	if (!modules) {
 		babelOptions.plugins.push([
-			'esm-resolver', {
+			'esm-resolver',
+			{
 				source: {
 					extensions: [
 						[
@@ -63,7 +71,7 @@ async function babelTarget(
 	}
 
 	// Read the package JSON.
-	const pkg = await packageJSON();
+	const pkg = await packageJson();
 
 	// Filter meta data file and create replace transform.
 	const filterMeta = gulpFilter(['*/meta.ts'], {restore: true});
@@ -78,7 +86,7 @@ async function babelTarget(
 		...filterMetaReplaces,
 		filterMeta.restore,
 		gulpSourcemaps.init(),
-		gulpBabel(babelOptions),
+		gulpBabel(babelOptions as unknown),
 		gulpRename(path => {
 			if (!modules && path.extname === '.js') {
 				path.extname = '.mjs';
@@ -104,30 +112,21 @@ async function babelTarget(
 // clean
 
 gulp.task('clean:logs', async () => {
-	await del([
-		'npm-debug.log*',
-		'yarn-debug.log*',
-		'yarn-error.log*'
-	]);
+	await del(['npm-debug.log*', 'yarn-debug.log*', 'yarn-error.log*']);
 });
 
 gulp.task('clean:lib', async () => {
-	await del([
-		'lib'
-	]);
+	await del(['lib']);
 });
 
 gulp.task('clean:manifest', async () => {
-	await del([
-		'oclif.manifest.json'
-	]);
+	await del(['oclif.manifest.json']);
 });
 
-gulp.task('clean', gulp.parallel([
-	'clean:logs',
-	'clean:lib',
-	'clean:manifest'
-]));
+gulp.task(
+	'clean',
+	gulp.parallel(['clean:logs', 'clean:lib', 'clean:manifest'])
+);
 
 // lint
 
@@ -135,9 +134,7 @@ gulp.task('lint:es', async () => {
 	await exec('eslint', ['.']);
 });
 
-gulp.task('lint', gulp.parallel([
-	'lint:es'
-]));
+gulp.task('lint', gulp.parallel(['lint:es']));
 
 // build
 
@@ -153,11 +150,10 @@ gulp.task('build:lib:mjs', async () => {
 	await babelTarget(['src/**/*.ts'], {}, 'lib', false);
 });
 
-gulp.task('build:lib', gulp.parallel([
-	'build:lib:dts',
-	'build:lib:cjs',
-	'build:lib:mjs'
-]));
+gulp.task(
+	'build:lib',
+	gulp.parallel(['build:lib:dts', 'build:lib:cjs', 'build:lib:mjs'])
+);
 
 gulp.task('build:manifest', async () => {
 	await exec('oclif-dev', ['manifest']);
@@ -167,11 +163,10 @@ gulp.task('build:readme', async () => {
 	await exec('oclif-dev', ['readme']);
 });
 
-gulp.task('build', gulp.parallel([
-	'build:lib',
-	'build:manifest',
-	'build:readme'
-]));
+gulp.task(
+	'build',
+	gulp.parallel(['build:lib', 'build:manifest', 'build:readme'])
+);
 
 // test
 
@@ -179,39 +174,22 @@ gulp.task('test:node', async () => {
 	await exec('jasmine');
 });
 
-gulp.task('test', gulp.parallel([
-	'test:node'
-]));
+gulp.task('test', gulp.parallel(['test:node']));
 
 // watch
 
 gulp.task('watch', () => {
-	gulp.watch([
-		'src/**/*',
-		'test/**/*'
-	], gulp.series([
-		'all'
-	]));
+	gulp.watch(['src/**/*', 'test/**/*'], gulp.series(['all']));
 });
 
 // all
 
-gulp.task('all', gulp.series([
-	'clean',
-	'build',
-	'test',
-	'lint'
-]));
+gulp.task('all', gulp.series(['clean', 'build', 'test', 'lint']));
 
 // prepack
 
-gulp.task('prepack', gulp.series([
-	'clean',
-	'build'
-]));
+gulp.task('prepack', gulp.series(['clean', 'build']));
 
 // default
 
-gulp.task('default', gulp.series([
-	'all'
-]));
+gulp.task('default', gulp.series(['all']));
