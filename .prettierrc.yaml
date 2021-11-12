@@ -7,8 +7,8 @@ quoteProps: as-needed
 trailingComma: none
 bracketSpacing: false
 arrowParens: avoid
+bracketSameLine: false
 jsxSingleQuote: false
-jsxBracketSameLine: false
 overrides:
   - files:
       - '*.yaml'
