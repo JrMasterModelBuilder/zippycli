@@ -202,14 +202,14 @@ export class RequestStream extends Readable {
 				request.on('response', (resp: IRequestResponse) => {
 					response = resp;
 				});
-				request.on('data', data => {
+				request.on('data', (data: Buffer) => {
 					datas.push(data);
 				});
 				request.on('error', err => {
 					request.abort();
 					cb(err, response, Buffer.concat(datas));
 				});
-				request.on('complete', resp => {
+				request.on('complete', (resp: IRequestResponse) => {
 					const data = Buffer.concat(datas);
 					const {encoding} = opts;
 					cb(
@@ -217,7 +217,7 @@ export class RequestStream extends Readable {
 						resp,
 						encoding === null
 							? data
-							: data.toString(encoding as any)
+							: data.toString(encoding as BufferEncoding)
 					);
 				});
 			}

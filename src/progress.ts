@@ -147,7 +147,7 @@ export class Progress extends Object {
 	 */
 	public end() {
 		if (this._interval) {
-			clearInterval(this._interval);
+			clearInterval(this._interval as NodeJS.Timer);
 			this._interval = null;
 		}
 		this.update();

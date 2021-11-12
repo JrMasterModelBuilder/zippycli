@@ -43,7 +43,7 @@ async function babelrc() {
 
 async function babelTarget(
 	src: string[],
-	srcOpts: any,
+	srcOpts: unknown,
 	dest: string,
 	modules: string | boolean
 ) {
