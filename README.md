@@ -5,7 +5,6 @@ An unofficial Zippyshare CLI
 [![npm](https://img.shields.io/npm/v/zippycli.svg)](https://npmjs.com/package/zippycli)
 [![node](https://img.shields.io/node/v/zippycli.svg)](https://nodejs.org)
 
-[![dependencies](https://img.shields.io/david/JrMasterModelBuilder/zippycli.svg)](https://david-dm.org/JrMasterModelBuilder/zippycli)
 [![size](https://packagephobia.now.sh/badge?p=zippycli)](https://packagephobia.now.sh/result?p=zippycli)
 [![downloads](https://img.shields.io/npm/dm/zippycli.svg)](https://npmcharts.com/compare/zippycli?minimal=true)
 
