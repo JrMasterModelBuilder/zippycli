@@ -7,15 +7,15 @@ jobs:
     strategy:
       matrix:
         config:
-          - node-version: '10.13.0'
+          - node-version: '10.13.0' # LTS
             NO_LINT: 1
           - node-version: '12.13.0' # LTS
             NO_LINT: 1
           - node-version: '14.15.0' # LTS
             NO_LINT: 1
-          - node-version: '16.13.0'
+          - node-version: '16.13.0' # LTS
             NO_LINT: 1
-          - node-version: '17.1.0'
+          - node-version: '17.3.0'
 
     runs-on: ubuntu-20.04
 
