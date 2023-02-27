@@ -50,9 +50,9 @@
 		"@oclif/plugin-help": "^3.2.4",
 		"abort-controller": "^3.0.0",
 		"fs-extra": "^10.0.0",
-		"node-fetch": "^2.6.2",
-		"source-map-support": "^0.5.20",
-		"zs-extract": "^1.4.1"
+		"node-fetch": "^2.6.9",
+		"source-map-support": "^0.5.21",
+		"zs-extract": "^1.4.2"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.16.0",
