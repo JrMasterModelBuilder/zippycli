@@ -1,4 +1,4 @@
 export const avatar = {
-	url: 'https://www85.zippyshare.com/v/eE67Qy6f/file.html',
+	url: 'https://www83.zippyshare.com/v/yakMuCxe/file.html',
 	filename: 'jmmb avatar.png'
 };
